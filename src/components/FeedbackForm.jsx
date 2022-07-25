@@ -19,11 +19,10 @@ function FeedbackForm() {
     });
   const [feedbackProvidee, setFeedbackProvidee] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const defaultDropdownValue = 'Select a Rating';
   const { addFeedback } =
     useContext(FeedbackContext);
 
-    useEffect(() => {
+    useEffect((feedbackProvidee) => {
       if(feedbackProvidee !== '') {
         if (data !== null) {
           setIsFormValid(Object.values(data).every((value) => value !== ""));
@@ -46,11 +45,8 @@ function FeedbackForm() {
         data.empId = item.empId;
         setIsFormValid(false);
       }
+      return null;
     });
-  }
-
-  const isFeedbackAvailable = (item) => {
-    console.log(item);
   }
 
   const handleSubmit = (e) => {
@@ -67,9 +63,7 @@ function FeedbackForm() {
         <div className='input-group select-wrapper'>
       <select className='rating-dropdown' name='feedbackProvidee' onChange={selectFeedbackProvidee} value={feedbackProvidee}>  
       <option value='' className='rating-option'>Select Feedback Providee</option>
-      {feedbackProvideeData.map((item) => <option className='rating-option' value={item.name} key={item.empId} disabled={(item) => {
-        return true;
-      }}>{item.name} (ID: {item.empId})</option>)}
+      {feedbackProvideeData.map((item) => <option className='rating-option' value={item.name} key={item.empId}>{item.name} (ID: {item.empId})</option>)}
       </select>
       </div>
       </div>
@@ -99,7 +93,7 @@ function FeedbackForm() {
       {dropdownValues.map((item) => <option className='rating-option' value={item.data} key={item.id}>{item.data}</option>)}
       </select>
       </div>
-      <span className='selected-data'>{data.betterMe !== defaultDropdownValue ? data.betterMe : ''}</span>
+      {/* <span className='selected-data'>{data.betterMe !== defaultDropdownValue ? data.betterMe : ''}</span> */}
       </div>
     </Card>
     <Card>
@@ -114,7 +108,7 @@ function FeedbackForm() {
       {dropdownValues.map((item) => <option className='rating-option' value={item.data} key={item.id}>{item.data}</option>)}
       </select>  
       </div>
-      <span className='selected-data'>{data.betterUs !== defaultDropdownValue ? data.betterUs : ''}</span>
+      {/* <span className='selected-data'>{data.betterUs !== defaultDropdownValue ? data.betterUs : ''}</span> */}
       </div>
     </Card>
     <Card>
@@ -129,7 +123,7 @@ function FeedbackForm() {
       {dropdownValues.map((item) => <option className='rating-option' value={item.data} key={item.id}>{item.data}</option>)}
       </select>  
       </div>
-      <span className='selected-data'>{data.buildABetterWorldClient !== defaultDropdownValue ? data.buildABetterWorldClient : ''}</span>
+      {/* <span className='selected-data'>{data.buildABetterWorldClient !== defaultDropdownValue ? data.buildABetterWorldClient : ''}</span> */}
       </div>
     </Card>
     <Card>
@@ -144,7 +138,7 @@ function FeedbackForm() {
       {dropdownValues.map((item) => <option className='rating-option' value={item.data} key={item.id}>{item.data}</option>)}
       </select>  
       </div>
-      <span className='selected-data'>{data.buildABetterWorldBusiness !== defaultDropdownValue ? data.buildABetterWorldBusiness : ''}</span>
+      {/* <span className='selected-data'>{data.buildABetterWorldBusiness !== defaultDropdownValue ? data.buildABetterWorldBusiness : ''}</span> */}
       </div>
     </Card>
     <Card>
@@ -157,7 +151,7 @@ function FeedbackForm() {
       {dropdownValues.map((item) => <option className='rating-option' value={item.data} key={item.id}>{item.data}</option>)}
       </select>  
       </div>
-      <span className='selected-data'>{data.qualityRiskManagement !== defaultDropdownValue ? data.qualityRiskManagement : ''}</span>
+      {/* <span className='selected-data'>{data.qualityRiskManagement !== defaultDropdownValue ? data.qualityRiskManagement : ''}</span> */}
       </div>
     </Card>
     <Card>
@@ -170,7 +164,7 @@ function FeedbackForm() {
       {dropdownValues.map((item) => <option className='rating-option' value={item.data} key={item.id}>{item.data}</option>)}
       </select>  
       </div>
-      <span className='selected-data'>{data.projectMetrics !== defaultDropdownValue ? data.projectMetrics : ''}</span>
+      {/* <span className='selected-data'>{data.projectMetrics !== defaultDropdownValue ? data.projectMetrics : ''}</span> */}
       </div>
     </Card>
     <Card>
@@ -189,7 +183,6 @@ function FeedbackForm() {
     <Button type='submit' isDisabled={!isFormValid}>Send</Button>
     </div>
     </form>
-    <Button type='button'>Go To Feedbacks</Button>
     </div>
   )
 }
